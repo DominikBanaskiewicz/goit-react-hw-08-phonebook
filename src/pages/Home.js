@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 const styles = {
   container: {
     minHeight: 'calc(100vh - 50px)',
@@ -15,16 +15,18 @@ const styles = {
 
 export default function Home() {
   return (
-    <div style={styles.container}>
-      <Helmet>
-        <title>Start page</title>
-      </Helmet>
-      <h1 style={styles.title}>
-        Welcome to Dominik B page{' '}
-        <span role="img" aria-label="Greeting icon">
-          💁‍♀️
-        </span>
-      </h1>
-    </div>
+    <HelmetProvider>
+      <div style={styles.container}>
+        <Helmet>
+          <title>Start page</title>
+        </Helmet>
+        <h1 style={styles.title}>
+          Welcome to Dominik B page{' '}
+          <span role="img" aria-label="Greeting icon">
+            💁‍♀️
+          </span>
+        </h1>
+      </div>
+    </HelmetProvider>
   );
 }

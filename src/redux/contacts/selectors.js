@@ -1,4 +1,4 @@
-export const getStatusFilter = state => state.filter;
+import { getStatusFilter } from '../filter/selector';
 export const getStatusContacts = state => state.contacts.contacts;
 export const getStatus = state => state.contacts;
 export const getState = state => state;

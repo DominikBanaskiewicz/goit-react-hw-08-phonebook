@@ -1,9 +1,9 @@
 import React from 'react';
 import css from './ContactForm.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { nanoid } from '@reduxjs/toolkit';
-import { addContact } from 'redux/operations';
-import { getStatusContacts } from 'redux/selectors';
+
+import { addContact } from 'redux/contacts/operations';
+import { getStatusContacts } from 'redux/contacts/selectors';
 export const ContactForm = () => {
   const dispatch = useDispatch();
 
@@ -15,8 +15,7 @@ export const ContactForm = () => {
     let isNameUnique = false;
     isNameUnique = contacts.some(elem => elem.name === name);
     if (!isNameUnique) {
-      const id = nanoid();
-      dispatch(addContact({ name, number, id }));
+      dispatch(addContact({ name, number }));
     } else {
       alert('This contact already exist');
     }

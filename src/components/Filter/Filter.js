@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import css from './Filter.module.css';
 import { useDispatch } from 'react-redux';
-import { changeFilterAction } from 'redux/filterSlice';
+import { changeFilterAction } from 'redux/filter/filterSlice';
 
 export const Filter = () => {
   const dispatch = useDispatch();

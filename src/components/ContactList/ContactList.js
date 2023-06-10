@@ -2,10 +2,11 @@ import css from './ContactList.module.css';
 import React from 'react';
 import { ContactForm } from '../ContactForm/ContactForm';
 import { Filter } from '../Filter/Filter';
-import { selectVisibleContacts } from 'redux/selectors';
-import { selectState } from 'redux/auth/selector';
+import { selectVisibleContacts } from 'redux/contacts/selectors';
 import { useSelector, useDispatch } from 'react-redux';
-import { deleteContact } from 'redux/operations';
+import { deleteContact } from 'redux/contacts/operations';
+import { useEffect } from 'react';
+import { fetchContacts } from 'redux/contacts/operations';
 
 export const ContactList = () => {
   const dispatch = useDispatch();
@@ -14,9 +15,11 @@ export const ContactList = () => {
     dispatch(deleteContact(id));
   };
 
-  const a = useSelector(selectState);
-  console.log(a);
   const contactsToPreview = useSelector(selectVisibleContacts);
+
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
 
   return (
     <>
@@ -27,7 +30,7 @@ export const ContactList = () => {
         {contactsToPreview.map(elem => (
           <li className={css.list__elem} key={elem.id}>
             <span className={css.name}>{elem.name}</span>
-            <span className={css.number}>{elem.phone}</span>
+            <span className={css.number}>{elem.number}</span>
             <button
               className={css.button}
               type="Button"

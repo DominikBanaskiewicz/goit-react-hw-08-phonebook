@@ -23,7 +23,7 @@ export const LoginForm = () => {
         Email
         <input type="email" name="email" />
       </label>
-      z
+
       <label className={css.label}>
         Password
         <input type="password" name="password" />
