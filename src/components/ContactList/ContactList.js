@@ -8,7 +8,6 @@ import { deleteContact } from 'redux/contacts/operations';
 import { useEffect } from 'react';
 import { fetchContacts } from 'redux/contacts/operations';
 import Stack from '@mui/material/Stack';
-import Item from '@mui/material/Stack';
 import { Container } from '@mui/material';
 import { selectUser } from 'redux/auth/selector';
 
