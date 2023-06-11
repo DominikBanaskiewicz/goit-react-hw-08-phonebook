@@ -8,6 +8,7 @@ import { deleteContact } from 'redux/contacts/operations';
 import { useEffect } from 'react';
 import { fetchContacts } from 'redux/contacts/operations';
 import Stack from '@mui/material/Stack';
+import Item from '@mui/material/Stack';
 import { Container } from '@mui/material';
 import { selectUser } from 'redux/auth/selector';
 
@@ -30,7 +31,7 @@ export const ContactList = () => {
         <h2>Welome {user.name} it's yours Contacts</h2>
         <Stack
           direction="column"
-          justifyContent="center"
+          justifyContent="flex-start"
           alignItems="flex-start"
           spacing={1}
         >
@@ -38,7 +39,7 @@ export const ContactList = () => {
           <Filter></Filter>
 
           {contactsToPreview.map(elem => (
-            <li className={css.list__elem} key={elem.id}>
+            <p className={css.list__elem} key={elem.id}>
               <span className={css.name}>{elem.name}</span>
               <span className={css.number}>{elem.number}</span>
               <button
@@ -48,7 +49,7 @@ export const ContactList = () => {
               >
                 Delete
               </button>
-            </li>
+            </p>
           ))}
         </Stack>
       </Container>

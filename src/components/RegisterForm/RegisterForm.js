@@ -44,7 +44,7 @@ export const RegisterForm = () => {
           >
             <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}></Avatar>
             <Typography component="h2" variant="h5">
-              Zarejestruj sie bałwanie
+              Sign up
             </Typography>
             <Box
               component="form"
@@ -91,7 +91,7 @@ export const RegisterForm = () => {
                 variant="contained"
                 sx={{ mt: 1, mb: 7 }}
               >
-                Zarejestruj sie bałwanie
+                Sign up
               </Button>
             </Box>
           </Box>
