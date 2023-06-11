@@ -20,10 +20,11 @@ export default function Home() {
         <Helmet>
           <title>Start page</title>
         </Helmet>
+
         <h1 style={styles.title}>
           Welcome to Dominik B page{' '}
           <span role="img" aria-label="Greeting icon">
-            💁‍♀️
+            💁‍♀️ Contacts list
           </span>
         </h1>
       </div>

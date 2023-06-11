@@ -7,6 +7,7 @@ import { lazy } from 'react';
 import { Suspense } from 'react';
 import { RestrictedRoute } from './RestrictedRoute';
 import { PrivateRoute } from './PrivateRoute';
+import { Container } from '@mui/material';
 
 export const App = () => {
   const RegisterPage = lazy(() => import('../pages/Register'));
@@ -18,33 +19,46 @@ export const App = () => {
 
   return (
     <Suspense>
-      <div className="App">
-        <AppBar />
+      <Container fixed>
+        <div className="App">
+          <AppBar />
 
-        {isLoading && !error && <b>Request in progress...</b>}
-        <Routes>
-          <Route path="/home" element={<HomePage />} />
-          <Route path="/register" element={<RegisterPage />} />
-          <Route
-            path="/login"
-            element={
-              <RestrictedRoute
-                component={<LoginPage />}
-                redirectTo="/contacts"
-              />
-            }
-          />
-          <Route
-            path="/contacts"
-            element={
-              <PrivateRoute component={<ContractsPage />} redirectTo="/login" />
-            }
-          />
+          {isLoading && !error && <b>Request in progress...</b>}
+          <Routes>
+            <Route path="/home" element={<HomePage />} />
+            <Route
+              path="/register"
+              element={
+                <RestrictedRoute
+                  component={<RegisterPage />}
+                  redirectTo="/home"
+                />
+              }
+            />
+            <Route
+              path="/login"
+              element={
+                <RestrictedRoute
+                  component={<LoginPage />}
+                  redirectTo="/contacts"
+                />
+              }
+            />
+            <Route
+              path="/contacts"
+              element={
+                <PrivateRoute
+                  component={<ContractsPage />}
+                  redirectTo="/login"
+                />
+              }
+            />
 
-          <Route path="/logout/*" element={<HomePage />} />
-          <Route path="*" element={<HomePage />} />
-        </Routes>
-      </div>
+            <Route path="/logout/*" element={<HomePage />} />
+            <Route path="*" element={<HomePage />} />
+          </Routes>
+        </div>
+      </Container>
     </Suspense>
   );
 };

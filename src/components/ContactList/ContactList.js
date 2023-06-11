@@ -7,6 +7,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { deleteContact } from 'redux/contacts/operations';
 import { useEffect } from 'react';
 import { fetchContacts } from 'redux/contacts/operations';
+import Stack from '@mui/material/Stack';
+import { Container } from '@mui/material';
+import { selectUser } from 'redux/auth/selector';
 
 export const ContactList = () => {
   const dispatch = useDispatch();
@@ -14,7 +17,7 @@ export const ContactList = () => {
   const handleDelete = id => {
     dispatch(deleteContact(id));
   };
-
+  const user = useSelector(selectUser);
   const contactsToPreview = useSelector(selectVisibleContacts);
 
   useEffect(() => {
@@ -23,24 +26,32 @@ export const ContactList = () => {
 
   return (
     <>
-      <ContactForm></ContactForm>
-      <Filter></Filter>
+      <Container maxWidth="sm">
+        <h2>Welome {user.name} it's yours Contacts</h2>
+        <Stack
+          direction="column"
+          justifyContent="center"
+          alignItems="flex-start"
+          spacing={1}
+        >
+          <ContactForm></ContactForm>
+          <Filter></Filter>
 
-      <ul>
-        {contactsToPreview.map(elem => (
-          <li className={css.list__elem} key={elem.id}>
-            <span className={css.name}>{elem.name}</span>
-            <span className={css.number}>{elem.number}</span>
-            <button
-              className={css.button}
-              type="Button"
-              onClick={() => handleDelete(elem.id)}
-            >
-              Delete
-            </button>
-          </li>
-        ))}
-      </ul>
+          {contactsToPreview.map(elem => (
+            <li className={css.list__elem} key={elem.id}>
+              <span className={css.name}>{elem.name}</span>
+              <span className={css.number}>{elem.number}</span>
+              <button
+                className={css.button}
+                type="Button"
+                onClick={() => handleDelete(elem.id)}
+              >
+                Delete
+              </button>
+            </li>
+          ))}
+        </Stack>
+      </Container>
     </>
   );
 };
