@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Notiflix from 'notiflix';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 axios.defaults.baseURL = 'https://connections-api.herokuapp.com/';
@@ -26,6 +27,9 @@ export const register = createAsyncThunk(
       setAuthHeader(res.data.token);
       return res.data;
     } catch (error) {
+      Notiflix.Notify.warning(
+        `Something went wrong, check your register data and try again`
+      );
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -43,8 +47,10 @@ export const logIn = createAsyncThunk(
       // After successful login, add the token to the HTTP header
       setAuthHeader(res.data.token);
       localStorage.setItem('user', JSON.stringify(res.data));
+      Notiflix.Notify.success(`Hello`);
       return res.data;
     } catch (error) {
+      Notiflix.Notify.warning(`Something went wrong, try again`);
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -58,6 +64,8 @@ export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
     clearAuthHeader();
   } catch (error) {
+    Notiflix.Notify.error(`Something went wrong`);
+
     return thunkAPI.rejectWithValue(error.message);
   }
 });

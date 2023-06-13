@@ -43,7 +43,7 @@ export const LoginForm = () => {
           >
             <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}></Avatar>
             <Typography component="h2" variant="h5">
-              Sing in
+              Sign in
             </Typography>
             <Box
               component="form"
